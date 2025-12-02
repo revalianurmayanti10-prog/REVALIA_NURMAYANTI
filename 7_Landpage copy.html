@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PT. Amal Jariyah - Magic Edition</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* ==================== Global ==================== */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; scroll-behavior:smooth;}
+body {background: radial-gradient(circle at top, #0b2b1a, #021208); color:white; overflow-x:hidden; transition: background 1.2s ease-in-out;}
+#particles {position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:-1;}
+
+/* ==================== Header ==================== */
+header {text-align:center; padding:60px 25px; background: linear-gradient(135deg,#0b3d26,#0f5f37); border-bottom:3px solid #00ff99; box-shadow:0 4px 25px rgba(0,255,150,0.2); animation: fadeDown 1.2s ease-out;}
+@keyframes fadeDown {0%{opacity:0; transform:translateY(-40px);}100%{opacity:1; transform:translateY(0);}}
+header h1 {font-size:40px; font-weight:700; text-shadow:0 0 18px #00ff99,0 0 35px #00ffaa,0 0 55px #00ffcc; font-family:'Cinzel Decorative',cursive; letter-spacing:1.2px;}
+header p {margin-top:10px; font-size:16px; opacity:0.9; text-shadow:0 0 12px rgba(0,255,150,0.5); font-style:italic;}
+
+/* ==================== Navigation ==================== */
+nav {background:rgba(10,26,19,0.55); backdrop-filter:blur(12px); text-align:center; padding:18px 0; position:sticky; top:0; z-index:200; border-bottom:1px solid rgba(0,255,150,0.3);}
+nav a {color:#b6ffd6; margin:0 22px; text-decoration:none; font-size:18px; font-weight:600; transition:0.4s cubic-bezier(.17,.67,.83,.67);}
+nav a:hover {color:#4bff98; text-shadow:0 0 18px #00ffaa,0 0 28px #00ffcc; transform:translateY(-3px);}
+
+/* ==================== Hero Section ==================== */
+.hero {height:500px; display:flex; justify-content:center; align-items:center; text-align:center; background: linear-gradient(135deg, rgba(0,255,150,0.2), rgba(0,200,120,0.2)), url('https://i.pinimg.com/originals/8c/10/3f/8c103f81b7c8432f8d394c2f3b5395f7.jpg') center/cover no-repeat; border-radius:2rem; color:white; font-size:55px; font-weight:700; text-shadow:0 0 30px black; opacity:0; transform:translateY(80px); transition:1.3s ease-out; animation:glowHero 3s infinite alternate;}
+@keyframes glowHero {from{text-shadow:0 0 20px #fff;}to{text-shadow:0 0 45px #00ff9d;}}
+.hero.visible {opacity:1; transform:translateY(0);}
+
+/* ==================== Floating Magic Orbs ==================== */
+.magic-orb {position:absolute; width:25px; height:25px; border-radius:50%; background:radial-gradient(circle,#00ffcc,#006655); box-shadow:0 0 25px #00ffcc; animation: floatUp 6s infinite ease-in-out; opacity:0.8;}
+@keyframes floatUp {0%{transform:translateY(0);}50%{transform:translateY(-40px);}100%{transform:translateY(0);}}
+
+/* ==================== Sections ==================== */
+.container {width:85%; margin:60px auto; position:relative;}
+h2 {text-align:center; margin-bottom:35px; font-size:32px; text-shadow:0 0 15px #55ffae;}
+.services {display:flex; gap:25px; flex-wrap:wrap; justify-content:center;}
+.service {background:rgba(18,59,32,0.75); backdrop-filter:blur(10px); border-radius:20px; padding:30px; width:280px; color:#e7ffe7; border:1px solid rgba(0,255,150,0.25); box-shadow:0 10px 25px rgba(0,255,150,0.2); transition:0.4s; opacity:0; transform:translateY(60px); position:relative; overflow:hidden;}
+.service.visible {opacity:1; transform:translateY(0);}
+.service:hover {transform:translateY(-10px) scale(1.05); box-shadow:0 0 25px #00ffaa;}
+.service h3 {text-shadow:0 0 12px #00ffcc; margin-bottom:12px; transition:0.3s;}
+.service:hover h3 {text-shadow:0 0 25px #00ffaa,0 0 40px #00ffcc;}
+.service::before {content:""; position:absolute; top:-80%; left:-80%; width:250%; height:250%; background:conic-gradient(#00ff99,#005533,#00ffaa,#009966); animation:spin 6s linear infinite; opacity:0.1;}
+@keyframes spin {from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+/* ==================== Form ==================== */
+form {background:rgba(255,255,255,0.06); padding:30px; border-radius:15px; border:1px solid rgba(0,255,150,0.25); box-shadow:0 10px 25px rgba(0,255,150,0.3); transition:0.4s;}
+input,textarea {width:100%; padding:12px; margin:12px 0 20px; background:rgba(255,255,255,0.12); border:none; border-radius:8px; color:white; transition:0.3s;}
+input:focus,textarea:focus {background:rgba(255,255,255,0.25); box-shadow:0 0 15px #00ffaa;}
+
+/* ==================== Buttons ==================== */
+button {background:linear-gradient(45deg,#00d67a,#00ffaa); padding:12px 25px; border:none; border-radius:10px; cursor:pointer; font-size:16px; font-weight:700; transition:0.4s; width:100%; box-shadow:0 5px 15px rgba(0,255,150,0.4);}
+button:hover {transform:scale(1.1) rotate(-1deg); box-shadow:0 0 20px #00ffaa,0 0 35px #00ffcc inset;}
+
+/* ==================== Footer ==================== */
+footer {text-align:center; padding:22px 0; background:#021602; border-top:2px solid #00ff99; margin-top:70px;}
+footer p {text-shadow:0 0 12px #00ffaa,0 0 20px #00ffcc;}
+
+/* ==================== Store Section ==================== */
+.store-section {padding:60px 5%; background:rgba(255,255,255,0.08); backdrop-filter:blur(10px); border-radius:2rem; margin:60px 5px; border:1px solid rgba(255,255,255,0.2);}
+.store-section h2 {margin-bottom:50px; font-size:36px; text-align:center; text-shadow:0 0 12px #00ffaa;}
+.store-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px;}
+.store-card {background:rgba(255,255,255,0.15); backdrop-filter:blur(12px); padding:20px; border-radius:2rem; text-align:center; border:1px solid rgba(255,255,255,0.2); box-shadow:0 10px 25px rgba(0,255,150,0.25); transition:transform 0.4s, box-shadow 0.4s; position:relative; overflow:hidden;}
+.store-card::before {content:""; position:absolute; width:200%; height:200%; top:-50%; left:-50%; background:radial-gradient(circle,#00ff99,#005533,#00ffaa,#009966); opacity:0.05; border-radius:2rem;}
+.store-card:hover {transform:translateY(-10px) scale(1.07) rotateZ(-1deg); box-shadow:0 0 35px #00ffaa,0 0 50px #00ffcc;}
+.store-card img {width:100%; border-radius:1.5rem; margin-bottom:10px; transition: transform 0.5s;}
+.store-card:hover img {transform:scale(1.05) rotateZ(2deg);}
+.store-card h3 {font-size:1.75rem; margin-bottom:10px; text-shadow:0 0 12px #00ffaa; transition:0.3s;}
+.store-card p {color:rgba(255,255,255,0.8); margin-bottom:10px;}
+.store-card .price {font-size:1.3rem; font-weight:700; color:#00ff99; margin:8px 0; text-shadow:0 0 10px #00ff99,0 0 15px #00ffaa;}
+
+/* ==================== Tombol Kembali Beranda ==================== */
+#backBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+#backBtn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 255, 150, 0.4);
+}
+#backBtn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 25px #00ffaa, 0 0 40px #00ffcc inset;
+}
+
+/* ==================== Modal Carousel ==================== */
+#productModal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:9999;}
+#productModalContent {position:relative; max-width:900px; width:90%; background:rgba(10,26,19,0.9); border-radius:1rem; padding:20px; display:flex; flex-direction:column; align-items:center; box-shadow:0 0 25px #00ffaa;}
+#closeModal {position:absolute; top:15px; right:20px; font-size:28px; font-weight:bold; cursor:pointer; color:#00ff99;}
+#modalImages {display:flex; gap:15px; flex-wrap:wrap; justify-content:center;}
+#modalImages img {width:200px; border-radius:1rem; box-shadow:0 0 15px #00ffaa; cursor:pointer; transition:transform 0.3s;}
+#modalImages img:hover {transform:scale(1.05);}
+</style>
+</head>
+
+<body>
+<canvas id="particles"></canvas>
+
+<header>
+    <h1>SELAMAT DATANG DI PT. AMAL JARIYAH</h1>
+    <p>Mari tumbuhkan makna dan cahaya dalam setiap perjalanan hidup.</p>
+</header>
+
+<nav>
+    <a href="#Beranda">Beranda</a>
+    <a href="#Tentang">Tentang Kami</a>
+    <a href="#Layanan">Layanan</a>
+    <a href="#Kontak">Kontak</a>
+    <a href="#Store">Toko</a>
+</nav>
+
+<section class="hero" id="Beranda"><h1>أهلاً وسهلا</h1></section>
+
+<section class="container" id="Tentang">
+    <h2 >Tentang Kami</h2>
+    <div style="text-align: center;"class="services">
+        <div class="service"><h3 >Alamat Kami</h3>
+            <p>Link. Padang Mahsyar, Akhirat-Syurga</p>
+        </div>
+        <div class="service"><h3>Hadis tentang Menuntut Ilmu</h3>
+            <p>Menuntut ilmu adalah kewajiban bagi setiap Muslim (HR. Ibnu Majah)...</p>
+        </div>
+    </div>
+</section>
+
+<section style="text-align: center;" class="container" id="Layanan">
+    <h2>Layanan Kami</h2>
+    <div class="services">
+        <div class="service"><h3>Baca Tulis Al-Qur'an</h3><p>Rp 250.000/Thn</p></div>
+        <div class="service"><h3>Bahasa Arab</h3><p>Rp 250.000/Thn</p></div>
+        <div class="service"><h3>Tahfidz 30 Juz</h3><p>Rp 250.000/Thn</p></div>
+    </div>
+</section>
+
+<section class="container" id="Kontak">
+    <h2>Hubungi Kami</h2>
+    <form>
+        <label>Nama</label>
+        <input type="text" placeholder="Masukkan Nama Anda" />
+        <label>Email</label>
+        <input type="email" placeholder="Masukkan Email Anda" />
+        <label>Pesan</label>
+        <textarea rows="5" placeholder="Tulis Pesan Anda Di Sini"></textarea>
+        <button>Kirim</button>
+    </form>
+</section>
+
+<section class="store-section" id="Store">
+    <h2>Toko Perlengkapan Ibadah</h2>
+    <div class="store-grid">
+        <div class="store-card">
+            <h3>Mukena Premium</h3>
+            <img src="https://i.pinimg.com/736x/d1/55/ab/d155ab5197f8c5dad666b9ba4c86cac9.jpg" alt="Mukena Premium">
+            <p class="price">Rp 10.000</p>
+            <p>Bahan adem, lembut, dan nyaman dipakai untuk ibadah.</p>
+            <button>Beli Sekarang</button>
+        </div>
+        <div class="store-card">
+            <h3>Gamis Elegan</h3>
+            <img src="https://i.pinimg.com/1200x/89/2e/c9/892ec980d3be395663bd8b223cb40777.jpg" alt="Gamis Elegan">
+            <p class="price">Rp 15.000</p>
+            <p>Model syar'i, modern, dan tetap anggun untuk berbagai acara.</p>
+            <button>Beli Sekarang</button>
+        </div>
+        <div class="store-card">
+            <h3>Sarung Dewasa</h3>
+            <img src="https://i.pinimg.com/736x/7a/30/ed/7a30ed748bcc7f7bb37d541580ba5520.jpg" alt="Sarung Dewasa">
+            <p class="price">Rp 5.000</p>
+            <p>Kualitas terbaik, nyaman, dan cocok untuk ibadah harian.</p>
+            <button>Beli Sekarang</button>
+        </div>
+    </div>
+</section>
+
+<!-- Tombol kembali ke beranda berbentuk gambar -->
+<div id="backBtn">
+    <img src="https://i.pinimg.com/736x/93/f9/39/93f9399069fe5f4dbd030d06ac50168a.jpg" alt="Kembali Beranda">
+</div>
+
+<!-- MODAL LIGHTBOX CAROUSEL -->
+<div id="productModal">
+    <div id="productModalContent">
+        <span id="closeModal">&times;</span>
+        <div id="modalImages"></div>
+    </div>
+</div>
+
+<footer><p>©2025 PT. Amal Jariyah</p></footer>
+
+<script>
+// Scroll Animations
+const faders=document.querySelectorAll('.service,.hero');
+const obs=new IntersectionObserver((entries, observer)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+},{threshold:0.2});
+faders.forEach(f=>obs.observe(f));
+
+// Floating Orbs
+for(let i=0;i<15;i++){
+    const orb=document.createElement('div');
+    orb.className='magic-orb';
+    orb.style.left=Math.random()*100+'%';
+    orb.style.top=Math.random()*600+'px';
+    orb.style.animationDelay=Math.random()*4+'s';
+    document.body.appendChild(orb);
+}
+
+// Particle Background
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+canvas.width=innerWidth; canvas.height=innerHeight;
+let particles=[];
+for(let i=0;i<80;i++){
+    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.6,dy:(Math.random()-0.5)*0.6});
+}
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle="#00ffcc"; ctx.fill();
+        p.x+=p.dx; p.y+=p.dy;
+        if(p.x<0||p.x>canvas.width) p.dx*=-1;
+        if(p.y<0||p.y>canvas.height) p.dy*=-1;
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+// Magic particles on card hover
+document.querySelectorAll('.store-card').forEach(card=>{
+    card.addEventListener('mousemove', e=>{
+        let particle=document.createElement('div');
+        particle.style.position='absolute';
+        particle.style.width=particle.style.height='6px';
+        particle.style.borderRadius='50%';
+        particle.style.background='#00ffcc';
+        particle.style.top=e.offsetY+'px';
+        particle.style.left=e.offsetX+'px';
+        particle.style.pointerEvents='none';
+        particle.style.opacity='0.8';
+        particle.style.transform='translate(-50%,-50%)';
+        particle.style.animation='particleFade 0.8s forwards';
+        card.appendChild(particle);
+        setTimeout(()=>particle.remove(),800);
+    });
+});
+
+// Modal Carousel
+const products = {
+    "Mukena Premium": [
+        "https://i.pinimg.com/736x/d1/55/ab/d155ab5197f8c5dad666b9ba4c86cac9.jpg",
+        "https://i.pinimg.com/736x/89/8d/bd/898dbd03edee4c50403d2dd27e3f4076.jpg",
+        "https://i.pinimg.com/736x/0c/c2/51/0cc2517a5483d567adb3a5872e6caf66.jpg"
+    ],
+    "Gamis Elegan": [
+        "https://i.pinimg.com/1200x/89/2e/c9/892ec980d3be395663bd8b223cb40777.jpg",
+        "https://i.pinimg.com/1200x/60/a8/25/60a82524826d103ab7f8787ec578a9c5.jpg",
+        "https://i.pinimg.com/736x/05/37/5f/05375fbd1ca11755741387519e243ea5.jpg"
+    ],
+    "Sarung Dewasa": [
+        "https://i.pinimg.com/736x/7a/30/ed/7a30ed748bcc7f7bb37d541580ba5520.jpg",
+        "https://i.pinimg.com/736x/6f/c5/b9/6fc5b902516c363f5c5fbe41297333c0.jpg",
+        "https://i.pinimg.com/736x/ec/f1/5c/ecf15c19dc2e60bf1a8c4889fc78c6ff.jpg"
+    ]
+};
+
+document.querySelectorAll('.store-card button').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+        const productName = e.target.parentElement.querySelector('h3').innerText;
+        const modal = document.getElementById('productModal');
+        const modalImages = document.getElementById('modalImages');
+        modalImages.innerHTML = "";
+        products[productName].forEach(src=>{
+            const img = document.createElement('img');
+            img.src = src;
+            modalImages.appendChild(img);
+        });
+        modal.style.display = 'flex';
+    });
+});
+
+// Close Modal
+document.getElementById('closeModal').addEventListener('click', ()=>{
+    document.getElementById('productModal').style.display = 'none';
+});
+document.getElementById('productModal').addEventListener('click', e=>{
+    if(e.target === document.getElementById('productModal')){
+        document.getElementById('productModal').style.display = 'none';
+    }
+});
+
+// Tombol scroll ke atas (Back to Top)
+document.getElementById('backBtn').addEventListener('click', ()=>{
+    window.scrollTo({top:0, behavior:'smooth'});
+});
+</script>
+</body>
+</html>
